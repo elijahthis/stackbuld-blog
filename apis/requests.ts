@@ -6,7 +6,7 @@ export const getPosts = async () => {
 	return posts;
 };
 
-export const getPost = async (id: String) => {
+export const getPostById = async (id: String) => {
 	const res = await fetch(`${API_URL}/posts/${id}`);
 	const post = await res.json();
 	return post;

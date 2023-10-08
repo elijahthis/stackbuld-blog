@@ -1,12 +1,8 @@
 import { getPosts } from "@/apis/requests";
 import AllPosts from "@/components/AllPosts";
 import Banner from "@/components/Banner";
-import Header from "@/components/Header";
 import HomeSection from "@/components/HomeSection";
 import WelcomeMessage from "@/components/WelcomeMessage";
-import { authContext } from "@/hooks/useAuth";
-import Image from "next/image";
-import { useContext } from "react";
 
 export default async function Home() {
 	const initialData = await getPosts();

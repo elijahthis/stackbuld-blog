@@ -1,10 +1,17 @@
+"use client";
 import { ellipsisTruncation, timeAgo } from "@/data/helpers";
 import { IPost } from "@/data/types";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const PostPreview = ({ postData }: { postData: IPost }) => {
+	const router = useRouter();
+
 	return (
-		<div className="cursor-pointer">
+		<div
+			className="cursor-pointer"
+			onClick={() => router.push(`/post/${postData.id}`)}
+		>
 			<div className="overflow-hidden ">
 				<Image
 					src={postData.bannerImg}

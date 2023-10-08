@@ -9,3 +9,10 @@ export interface IPost {
 	comments: [];
 	id: string;
 }
+
+export interface IComment {
+	createdAt: string;
+	content: string;
+	authorName: string;
+	authorAvatar: string;
+}

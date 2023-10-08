@@ -3,6 +3,7 @@ import Link from "next/link";
 import Button from "./Button";
 import { useContext } from "react";
 import { authContext } from "@/hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Header = () => {
 	const { isLoggedIn, setIsLoggedIn, setUserObj } = useContext(authContext);
@@ -13,7 +14,15 @@ const Header = () => {
 				StackBuld
 			</Link>
 			{isLoggedIn ? (
-				<Button onClick={() => setIsLoggedIn(false)}>Logout</Button>
+				<Button
+					onClick={() => {
+						setIsLoggedIn(false);
+						setUserObj({});
+						toast.success("Logout successful");
+					}}
+				>
+					Logout
+				</Button>
 			) : (
 				<Link href="/auth/login">
 					<Button>Login</Button>

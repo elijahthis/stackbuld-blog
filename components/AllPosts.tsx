@@ -7,6 +7,7 @@ import PaginationComponent from "./PaginationComponent";
 import usePaginate from "@/hooks/usePaginate";
 import useSearch from "@/hooks/useSearch";
 import { useState } from "react";
+import SearchBox from "./SearchBox";
 
 interface AllPostsProps {
 	title: string;
@@ -41,17 +42,10 @@ const AllPosts = ({ title, postList }: AllPostsProps) => {
 		<section className="mb-5">
 			<div className="mb-5 flex flex-col lg:flex-row items-stretch gap-2 lg:justify-between ">
 				<h2 className="text-2xl">{title}</h2>
-				<div className="border border-[#a4634d] rounded-xl ">
-					<input
-						type="search"
-						name=""
-						id=""
-						className="bg-transparent w-full outline-none p-2"
-						placeholder="Search posts..."
-						value={searchText}
-						onChange={(e) => setSearchText(e.target.value)}
-					/>
-				</div>
+				<SearchBox
+					searchText={searchText}
+					onChange={(e) => setSearchText(e.target.value)}
+				/>
 			</div>
 
 			<div
