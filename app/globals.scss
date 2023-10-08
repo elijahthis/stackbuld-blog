@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+	@variants responsive {
+		/* Hide scrollbar for Chrome, Safari and Opera */
+		.no-scrollbar::-webkit-scrollbar {
+			display: none;
+		}
+
+		/* Hide scrollbar for IE, Edge and Firefox */
+		.no-scrollbar {
+			-ms-overflow-style: none; /* IE and Edge */
+			scrollbar-width: none; /* Firefox */
+		}
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+$dark_col: #181a20;
+$light_col: #ffffff;
+$accent_col: #a4634d;
+
+body {
+	background-color: $dark_col;
+	// color: $accent_col;
+	color: $light_col;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #ffffff;
+	font-weight: 700;
+}
+
+.btn-loader {
+	-webkit-animation: spin 0.8s linear infinite; /* Safari */
+	animation: spin 0.8s linear infinite;
+	// color: #ffffff;
+}
+
+.PaginationComponent {
+	display: flex;
+	flex: row;
+	align-items: center;
+	gap: 2px;
+
+	.previous {
+		margin-right: auto;
+		color: $accent_col;
+	}
+
+	.next {
+		margin-left: auto;
+		color: $accent_col;
+	}
+
+	&__page,
+	&__break {
+		min-width: 40px;
+		width: 40px;
+		height: 40px;
+
+		display: grid;
+		place-items: center;
+		color: rgba($light_col, 0.5);
+		font-weight: 500;
+	}
+
+	&__active {
+		background: #f9fafb;
+		border-radius: 50%;
+		color: #1d2939;
+	}
+}
+
+.Toastify {
+	&__toast {
+		&-container {
+			width: unset !important;
+			min-width: 320px;
+		}
+		&-body {
+		}
+
+		&--error {
+			border: 0;
+			/* border-radius: 50px !important; */
+			background: #a10f18 !important;
+			color: #ffffff !important;
+
+			svg > path {
+				fill: #ffffff !important;
+			}
+		}
+
+		&--success {
+			border: 0;
+			/* border-radius: 50px !important; */
+			background: #169d53 !important;
+			color: #ffffff !important;
+
+			svg > path {
+				fill: #ffffff !important;
+			}
+		}
+
+		&--info {
+			border: 0;
+			/* border-radius: 50px !important; */
+			background: #243256 !important;
+			color: #ffffff !important;
+			svg > path {
+				fill: #ffffff !important;
+			}
+		}
+	}
+}
+
+@media (max-width: 1024px) {
+	.PaginationComponent {
+		&__page,
+		&__break {
+			display: none;
+		}
+	}
+
+	.Toastify {
+		&__toast-container {
+			width: 80vw !important;
+
+			&--bottom-center {
+				bottom: 1em !important;
+				left: 50% !important;
+				transform: translateX(-50%) !important;
+			}
+		}
+	}
+}
