@@ -10,7 +10,10 @@ const PostPreview = ({ postData }: { postData: IPost }) => {
 	return (
 		<div
 			className="cursor-pointer"
-			onClick={() => router.push(`/post/${postData.id}`)}
+			onClick={() => {
+				console.log("open post");
+				router.push(`/post/${postData.id}`);
+			}}
 		>
 			<div className="overflow-hidden ">
 				<Image

@@ -4,6 +4,9 @@ import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
 import Image from "next/image";
 import { IComment, IPost } from "@/data/types";
+import Button from "@/components/Button";
+import LoadingComponent from "@/components/Loading";
+import BackButton from "@/components/BackButton";
 
 function PostPage({ params }: { params: { id: string } }) {
 	const router = useRouter();
@@ -21,7 +24,7 @@ function PostPage({ params }: { params: { id: string } }) {
 
 	// loading state
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <LoadingComponent />;
 	}
 
 	// If the post is not found
@@ -34,12 +37,13 @@ function PostPage({ params }: { params: { id: string } }) {
 	if (post)
 		return (
 			<main>
+				<BackButton url="/" />
 				<Image
 					src={post.bannerImg}
 					alt={post.title + "image"}
 					width={200}
-					height={200}
-					className="rounded-lg mb-3 lg:mb-8 w-full h-48 object-cover hover:opacity-70 transition-all duration-300 hover:scale-105 "
+					height={400}
+					className="rounded-lg mb-3 lg:mb-8 w-full h-64 object-cover "
 				/>
 				<h1 className="mb-4 text-3xl lg:text-5xl lg:mb-6">{post.title}</h1>
 				<div className="flex flex-row items-center gap-4 border-t border-b border-gray-600 py-2 mb-6">
@@ -61,7 +65,7 @@ function PostPage({ params }: { params: { id: string } }) {
 				</div>
 				<p className="mb-20">{post.content}</p>
 				<div>
-					<h2>Comments</h2>
+					<h2 className="text-xl lg:text-2xl">Comments</h2>
 					<div>
 						{post.comments.map((item: IComment) => (
 							<p></p>
