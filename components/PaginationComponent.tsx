@@ -4,8 +4,19 @@ import {
 	LiaLongArrowAltRightSolid,
 } from "react-icons/lia";
 
+/**
+ * Props for the PaginationComponent component.
+ */
 interface PaginationComponentProps {
+	/**
+	 * Function to handle page click event.
+	 * @param selectedItem - The selected page item.
+	 */
 	handlePageClick: (selectedItem: { selected: number }) => void;
+	
+	/**
+	 * The total number of pages.
+	 */
 	pageCount: number;
 }
 

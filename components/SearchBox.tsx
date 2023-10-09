@@ -1,7 +1,19 @@
 import { Dispatch, SetStateAction } from "react";
 
+/**
+ * Props for the SearchBox component
+ * @interface SearchBoxProps
+ */
 interface SearchBoxProps {
+	/**
+	 * The text to be displayed in the search box
+	 * @type {string}
+	 */
 	searchText: string;
+	/**
+	 * Function to be called when the search text changes
+	 * @type {(e: React.ChangeEvent<HTMLInputElement>) => void}
+	 */
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

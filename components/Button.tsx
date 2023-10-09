@@ -1,11 +1,32 @@
 import { BiLoaderAlt } from "react-icons/bi";
 
+/**
+ * Button component props
+ */
 interface ButtonProps {
+	/**
+	 * The content of the button
+	 */
 	children: JSX.Element | JSX.Element[] | string;
+	/**
+	 * The function to be called when the button is clicked
+	 */
 	onClick?: () => void;
+	/**
+	 * The class name to be applied to the button
+	 */
 	className?: string;
+	/**
+	 * Whether the button is in a loading state
+	 */
 	loading?: boolean;
+	/**
+	 * The type of the button
+	 */
 	type?: "button" | "submit" | "reset" | undefined;
+	/**
+	 * The style object to be applied to the button
+	 */
 	style?: React.CSSProperties;
 }
 

@@ -10,6 +10,7 @@ import BackButton from "@/components/BackButton";
 import { authContext } from "@/hooks/useAuth";
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
+import CommentsSection from "@/components/CommentsSection";
 
 function PostPage({ params }: { params: { id: string } }) {
 	const router = useRouter();
@@ -118,14 +119,7 @@ function PostPage({ params }: { params: { id: string } }) {
 					className="mb-20 blogContent"
 					dangerouslySetInnerHTML={{ __html: post.content }}
 				></p>
-				<div>
-					<h2 className="text-xl lg:text-2xl">Comments</h2>
-					<div>
-						{post.comments?.map((item: IComment) => (
-							<p></p>
-						))}
-					</div>
-				</div>
+				<CommentsSection post={post} />
 			</main>
 		);
 

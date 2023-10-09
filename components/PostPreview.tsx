@@ -9,6 +9,10 @@ import { useContext } from "react";
 const PostPreview = ({ postData }: { postData: IPost }) => {
 	const router = useRouter();
 
+	/**
+	 * A component that displays a preview of a blog post.
+	 * @returns JSX.Element
+	 */
 	const { userObj } = useContext(authContext);
 
 	return (

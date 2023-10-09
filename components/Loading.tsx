@@ -1,6 +1,9 @@
 import React from "react";
 import { BiLoaderAlt } from "react-icons/bi";
 
+/**
+ * A component that displays a loading spinner.
+ */
 const LoadingComponent: React.FC = () => {
 	return (
 		<div className="px-4 py-12">

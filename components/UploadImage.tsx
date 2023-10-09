@@ -8,6 +8,14 @@ interface UploadImageProps {
 }
 
 const UploadImage = ({ image, setImage }: UploadImageProps) => {
+	/**
+	 * Component for uploading an image to Cloudinary and generating a URL.
+	 * It accepts an image URL and a setter function as props.
+	 * The setter function is used to set the image URL.
+	 * It also displays a preview of the image.
+	 * It also accepts drag-and-drop.
+	 */
+
 	const [loading, setLoading] = useState(false);
 
 	const handleImageUpload = async (
