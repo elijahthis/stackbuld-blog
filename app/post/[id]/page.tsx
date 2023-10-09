@@ -1,19 +1,26 @@
 "use client";
-import { getPostById } from "@/apis/requests";
+import { deletePost, getPostById } from "@/apis/requests";
 import { useRouter } from "next/navigation";
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import Image from "next/image";
 import { IComment, IPost } from "@/data/types";
 import Button from "@/components/Button";
 import LoadingComponent from "@/components/Loading";
 import BackButton from "@/components/BackButton";
+import { authContext } from "@/hooks/useAuth";
+import { useContext, useState } from "react";
+import { toast } from "react-toastify";
 
 function PostPage({ params }: { params: { id: string } }) {
 	const router = useRouter();
+	const [deleteLoading, setDeleteLoading] = useState(false);
+
+	const queryClient = useQueryClient();
+
+	const { isLoggedIn, userObj } = useContext(authContext);
 
 	// Get the post id from the url
-
-	// Query
+	// fetch Query
 	const {
 		data: post,
 		isLoading,
@@ -21,6 +28,29 @@ function PostPage({ params }: { params: { id: string } }) {
 	} = useQuery<IPost>(["post", params.id], () =>
 		getPostById(params.id as string)
 	);
+
+	// Delete mutation
+	const deleteMutation = useMutation(deletePost, {
+		onMutate: () => {
+			setDeleteLoading(true);
+		},
+		onSuccess: () => {
+			console.log("success");
+			toast.success("Post deleted successfully");
+
+			// refetch posts
+			queryClient.invalidateQueries("posts").then(() => {
+				router.push("/"); // redirect to home page
+			});
+		},
+		onError: () => {
+			console.log("error");
+			toast.error("Error deleting post");
+		},
+		onSettled: () => {
+			setDeleteLoading(false);
+		},
+	});
 
 	// loading state
 	if (isLoading) {
@@ -37,9 +67,28 @@ function PostPage({ params }: { params: { id: string } }) {
 	if (post)
 		return (
 			<main>
-				<BackButton url="/" />
+				<div className="flex flex-row items-center gap-4 justify-between mb-5">
+					<BackButton url="/" />
+					{/* Edit and Delete operations can only be performed on your own posts */}
+					{isLoggedIn && post.authorName === userObj?.displayName ? (
+						<div className="flex flex-row items-center gap-4">
+							<Button>Edit Post</Button>
+							<Button
+								style={{ backgroundColor: "#a10f18" }}
+								loading={deleteLoading}
+								onClick={() => {
+									deleteMutation.mutate(post.id);
+								}}
+							>
+								Delete Post
+							</Button>
+						</div>
+					) : (
+						<></>
+					)}
+				</div>
 				<Image
-					src={post.bannerImg}
+					src={post.bannerImg ? post.bannerImg : "/images/placeholder.png"}
 					alt={post.title + "image"}
 					width={200}
 					height={400}
@@ -54,7 +103,9 @@ function PostPage({ params }: { params: { id: string } }) {
 						height={40}
 						className="rounded-full inline-block "
 					/>
-					<p className="text-[#a4634d] ">{post.authorName}</p>
+					<p className="text-[#a4634d] ">{`${post.authorName} ${
+						post.authorName === userObj?.displayName ? "(YOU)" : ""
+					}`}</p>
 					<p className="ml-auto text-gray-400 text-sm">
 						{new Date(post.createdAt).toLocaleDateString("en-US", {
 							year: "numeric",
@@ -70,7 +121,7 @@ function PostPage({ params }: { params: { id: string } }) {
 				<div>
 					<h2 className="text-xl lg:text-2xl">Comments</h2>
 					<div>
-						{post.comments.map((item: IComment) => (
+						{post.comments?.map((item: IComment) => (
 							<p></p>
 						))}
 					</div>

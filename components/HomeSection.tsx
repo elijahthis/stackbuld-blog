@@ -11,7 +11,7 @@ interface HomeSectionProps {
 
 const HomeSection = ({ title, postList }: HomeSectionProps) => {
 	// Query
-	const { data } = useQuery({
+	const { data } = useQuery<IPost[]>({
 		queryKey: ["posts"],
 		queryFn: getPosts,
 		initialData: postList,
@@ -20,7 +20,8 @@ const HomeSection = ({ title, postList }: HomeSectionProps) => {
 	// console.log("postList", postList);
 
 	// sort by date
-	const sortedData = postList.sort((a: IPost, b: IPost) => {
+	if (!data) return <></>;
+	const sortedData = data.sort((a: IPost, b: IPost) => {
 		return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
 	});
 

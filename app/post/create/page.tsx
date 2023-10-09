@@ -33,9 +33,9 @@ const CreatePostPage = () => {
 			toast.success("Post created successfully");
 
 			// refetch posts
-			queryClient.invalidateQueries("posts");
-
-			router.push("/"); // redirect to home page
+			queryClient.invalidateQueries(["posts"]).then(() => {
+				router.push("/"); // redirect to home page
+			});
 		},
 		onError: () => {
 			console.log("error");

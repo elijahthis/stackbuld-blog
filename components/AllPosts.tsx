@@ -6,7 +6,7 @@ import PostPreview from "./PostPreview";
 import PaginationComponent from "./PaginationComponent";
 import usePaginate from "@/hooks/usePaginate";
 import useSearch from "@/hooks/useSearch";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import SearchBox from "./SearchBox";
 
 interface AllPostsProps {
@@ -22,14 +22,24 @@ const AllPosts = ({ title, postList }: AllPostsProps) => {
 		initialData: postList,
 	});
 
-	const itemsPerPage = 9;
-	// sort by date
-	const sortedData = postList.sort((a: IPost, b: IPost) => {
-		return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-	});
-
 	// Component state
 	const [searchText, setSearchText] = useState("");
+	const [sortedData, setSortedData] = useState<IPost[]>([]);
+
+	const itemsPerPage = 9;
+
+	console.log("data", data);
+
+	useEffect(() => {
+		// sort by date
+		setSortedData(
+			data.sort((a: IPost, b: IPost) => {
+				return (
+					new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+				);
+			})
+		);
+	}, [data]);
 
 	// Custom hooks
 	const searchResults = useSearch(sortedData, searchText);

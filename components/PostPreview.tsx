@@ -1,11 +1,15 @@
 "use client";
 import { ellipsisTruncation, timeAgo } from "@/data/helpers";
 import { IPost } from "@/data/types";
+import { authContext } from "@/hooks/useAuth";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
 
 const PostPreview = ({ postData }: { postData: IPost }) => {
 	const router = useRouter();
+
+	const { userObj } = useContext(authContext);
 
 	return (
 		<div
@@ -17,7 +21,9 @@ const PostPreview = ({ postData }: { postData: IPost }) => {
 		>
 			<div className="overflow-hidden ">
 				<Image
-					src={postData.bannerImg}
+					src={
+						postData.bannerImg ? postData.bannerImg : "/images/placeholder.png"
+					}
 					alt={postData.title + "image"}
 					width={200}
 					height={200}
@@ -41,7 +47,9 @@ const PostPreview = ({ postData }: { postData: IPost }) => {
 					height={20}
 					className="rounded-full inline-block "
 				/>
-				<p className=" inline-block text-[#a4634d] ">{postData.authorName}</p>
+				<p className=" inline-block text-[#a4634d] ">{`${postData.authorName} ${
+					postData.authorName === userObj?.displayName ? "(YOU)" : ""
+				}`}</p>
 				<p className="ml-auto text-gray-400">{timeAgo(postData.createdAt)}</p>
 			</div>
 		</div>
