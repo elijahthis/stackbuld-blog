@@ -29,6 +29,6 @@ export const timeAgo = (date: string): string => {
 	} else if (minutes > 0) {
 		return `${minutes} mins. ago`;
 	} else {
-		return `${seconds} secs. ago`;
+		return `Just Now`;
 	}
 };

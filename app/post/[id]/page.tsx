@@ -63,7 +63,10 @@ function PostPage({ params }: { params: { id: string } }) {
 						})}
 					</p>
 				</div>
-				<p className="mb-20">{post.content}</p>
+				<p
+					className="mb-20 blogContent"
+					dangerouslySetInnerHTML={{ __html: post.content }}
+				></p>
 				<div>
 					<h2 className="text-xl lg:text-2xl">Comments</h2>
 					<div>

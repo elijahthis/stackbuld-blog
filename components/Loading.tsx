@@ -3,7 +3,7 @@ import { BiLoaderAlt } from "react-icons/bi";
 
 const LoadingComponent: React.FC = () => {
 	return (
-		<div>
+		<div className="px-4 py-12">
 			<BiLoaderAlt className="btn-loader mx-auto h-5 w-5 lg:h-6 lg:w-6 " />
 		</div>
 	);

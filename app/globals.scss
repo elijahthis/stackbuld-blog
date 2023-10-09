@@ -130,6 +130,22 @@ h6 {
 	}
 }
 
+.ql-container.ql-snow {
+	min-height: 360px;
+}
+
+.blogContent {
+	h1 {
+		font-size: 2.5rem;
+	}
+	h2 {
+		font-size: 2rem;
+	}
+	h3 {
+		font-size: 1.75rem;
+	}
+}
+
 @media (max-width: 1024px) {
 	.PaginationComponent {
 		&__page,
@@ -147,6 +163,18 @@ h6 {
 				left: 50% !important;
 				transform: translateX(-50%) !important;
 			}
+		}
+	}
+
+	.blogContent {
+		h1 {
+			font-size: 2rem;
+		}
+		h2 {
+			font-size: 1.75rem;
+		}
+		h3 {
+			font-size: 1.5rem;
 		}
 	}
 }
