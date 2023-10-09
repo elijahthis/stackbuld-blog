@@ -1,8 +1,11 @@
-import ReactPaginate from "react-paginate";
+// import ReactPaginate from "react-paginate";
 import {
 	LiaLongArrowAltLeftSolid,
 	LiaLongArrowAltRightSolid,
 } from "react-icons/lia";
+import dynamic from "next/dynamic";
+
+const ReactPaginate = dynamic(() => import("react-paginate"), { ssr: false });
 
 /**
  * Props for the PaginationComponent component.
@@ -13,7 +16,7 @@ interface PaginationComponentProps {
 	 * @param selectedItem - The selected page item.
 	 */
 	handlePageClick: (selectedItem: { selected: number }) => void;
-	
+
 	/**
 	 * The total number of pages.
 	 */
