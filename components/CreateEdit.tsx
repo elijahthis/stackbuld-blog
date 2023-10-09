@@ -6,11 +6,13 @@ import UploadImage from "@/components/UploadImage";
 import { IPost } from "@/data/types";
 import { authContext } from "@/hooks/useAuth";
 import { randomBytes } from "crypto";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import React, { useContext, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import ReactQuill from "react-quill";
 import { toast } from "react-toastify";
+
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 /**
  * Component for creating or editing a blog post.
@@ -126,6 +128,26 @@ const CreateEdit = ({
 		}
 	};
 
+	const modules = {
+		toolbar: [
+			[{ header: "1" }, { header: "2" }, { header: "3" }, { font: [] }],
+			[{ size: [] }],
+			["bold", "italic", "underline", "strike", "blockquote"],
+			[
+				{ list: "ordered" },
+				{ list: "bullet" },
+				{ indent: "-1" },
+				{ indent: "+1" },
+			],
+			["link", "image", "video"],
+			["clean"],
+		],
+		clipboard: {
+			// toggle to add extra line breaks when pasting HTML:
+			matchVisual: false,
+		},
+	};
+
 	return (
 		<div>
 			<BackButton />
@@ -145,7 +167,11 @@ const CreateEdit = ({
 				</div>
 				<div className="flex flex-col items-stretch gap-2 mb-4 ">
 					<label htmlFor="content">Content:</label>
-					{/* <ReactQuill value={content} onChange={handleContentChange} /> */}
+					<ReactQuill
+						value={content}
+						onChange={handleContentChange}
+						modules={modules}
+					/>
 				</div>
 				<div className="mb-4">
 					<UploadImage image={image} setImage={setImage} />
