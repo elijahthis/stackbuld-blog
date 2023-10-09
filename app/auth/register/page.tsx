@@ -21,34 +21,36 @@ const Register = () => {
 	const { isLoggedIn, setIsLoggedIn, setUserObj } = useContext(authContext);
 
 	const registerFunc = (email: string, password: string, fullName: string) => {
-		setLoading(true);
-		createUserWithEmailAndPassword(auth, email, password)
-			.then((userCredential) => {
-				updateProfile(auth.currentUser as User, {
-					displayName: fullName,
-				}).then(() => {
-					// Profile updated!
-					// ...
+		if (window) {
+			setLoading(true);
+			createUserWithEmailAndPassword(auth, email, password)
+				.then((userCredential) => {
+					updateProfile(auth.currentUser as User, {
+						displayName: fullName,
+					}).then(() => {
+						// Profile updated!
+						// ...
 
-					// Signed in
-					const user = userCredential.user;
-					// ...
-					// console.log(user);
-					setUserObj(user);
-					setIsLoggedIn(true);
+						// Signed in
+						const user = userCredential.user;
+						// ...
+						// console.log(user);
+						setUserObj(user);
+						setIsLoggedIn(true);
 
-					toast.success("Registration successful");
-					router.push("/");
+						toast.success("Registration successful");
+						router.push("/");
+					});
+				})
+				.catch((error) => {
+					const errorCode = error.code;
+					const errorMessage = error.message;
+					toast.error(errorMessage);
+				})
+				.finally(() => {
+					setLoading(false);
 				});
-			})
-			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				toast.error(errorMessage);
-			})
-			.finally(() => {
-				setLoading(false);
-			});
+		}
 	};
 
 	return (
