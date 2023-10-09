@@ -28,8 +28,6 @@ const AllPosts = ({ title, postList }: AllPostsProps) => {
 
 	const itemsPerPage = 9;
 
-	console.log("data", data);
-
 	useEffect(() => {
 		// sort by date
 		setSortedData(

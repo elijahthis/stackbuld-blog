@@ -50,7 +50,6 @@ const CreateEdit = ({
 			setCreateLoading(true);
 		},
 		onSuccess: () => {
-			console.log("success");
 			toast.success("Post created successfully");
 
 			// refetch posts
@@ -73,7 +72,6 @@ const CreateEdit = ({
 			setEditLoading(true);
 		},
 		onSuccess: () => {
-			console.log("success");
 			toast.success("Post edited successfully");
 
 			// refetch posts
@@ -82,7 +80,6 @@ const CreateEdit = ({
 			});
 		},
 		onError: () => {
-			console.log("error");
 			toast.error("Error editing post");
 		},
 		onSettled: () => {

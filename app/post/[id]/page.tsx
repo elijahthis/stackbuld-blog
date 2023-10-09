@@ -36,7 +36,6 @@ function PostPage({ params }: { params: { id: string } }) {
 			setDeleteLoading(true);
 		},
 		onSuccess: () => {
-			console.log("success");
 			toast.success("Post deleted successfully");
 
 			// refetch posts
@@ -62,8 +61,6 @@ function PostPage({ params }: { params: { id: string } }) {
 	if (!post || error) {
 		router.push("/404");
 	}
-
-	console.log("post", post);
 
 	if (post)
 		return (

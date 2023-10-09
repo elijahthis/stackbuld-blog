@@ -19,7 +19,6 @@ const PostPreview = ({ postData }: { postData: IPost }) => {
 		<div
 			className="cursor-pointer"
 			onClick={() => {
-				console.log("open post");
 				router.push(`/post/${postData.id}`);
 			}}
 		>

@@ -17,8 +17,6 @@ const HomeSection = ({ title, postList }: HomeSectionProps) => {
 		initialData: postList,
 	});
 
-	// console.log("postList", postList);
-
 	// sort by date
 	if (!data) return <></>;
 	const sortedData = data.sort((a: IPost, b: IPost) => {
