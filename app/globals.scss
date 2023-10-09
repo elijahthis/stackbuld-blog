@@ -85,6 +85,10 @@ h6 {
 		border-radius: 50%;
 		color: #1d2939;
 	}
+
+	& > ul {
+		display: none;
+	}
 }
 
 .Toastify {
