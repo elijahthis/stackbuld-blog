@@ -65,7 +65,7 @@ const AllPosts = ({ title, postList }: AllPostsProps) => {
 				))}
 			</div>
 			<div className="lg:mb-24 mb-28 pt-4 mt-10 border-t border-[#EAECF0] ">
-				{window ? (
+				{typeof window !== "undefined" ? (
 					<PaginationComponent
 						handlePageClick={handlePageClick}
 						pageCount={pageCount}
