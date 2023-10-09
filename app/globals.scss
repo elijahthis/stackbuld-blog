@@ -62,10 +62,16 @@ h6 {
 		margin-right: auto;
 		color: $accent_col;
 	}
+	.previous.disabled {
+		visibility: hidden;
+	}
 
 	.next {
 		margin-left: auto;
 		color: $accent_col;
+	}
+	.next.disabled {
+		visibility: hidden;
 	}
 
 	&__page,
