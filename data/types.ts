@@ -1,3 +1,11 @@
+export interface IComment {
+	id: string;
+	createdAt: string;
+	content: string;
+	authorName: string;
+	authorAvatar: string;
+}
+
 export interface IPost {
 	createdAt: string;
 	bannerImg: string;
@@ -6,13 +14,6 @@ export interface IPost {
 	updatedAt: string;
 	authorName: string;
 	authorAvatar: string;
-	comments: [];
+	comments: IComment[];
 	id: string;
-}
-
-export interface IComment {
-	createdAt: string;
-	content: string;
-	authorName: string;
-	authorAvatar: string;
 }

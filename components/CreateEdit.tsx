@@ -12,6 +12,13 @@ import { useMutation, useQueryClient } from "react-query";
 import ReactQuill from "react-quill";
 import { toast } from "react-toastify";
 
+/**
+ * Component for creating or editing a blog post.
+ * @param edit - A boolean indicating whether the component is used for editing an existing post or creating a new one.
+ * @param post - An optional IPost object representing the post being edited.
+ * @returns A React component that renders a form for creating or editing a blog post.
+ */
+
 const CreateEdit = ({
 	edit,
 	post = {} as IPost,
