@@ -1,5 +1,11 @@
 import { useState } from "react";
 
+/**
+ * A custom hook that paginates an array of items.
+ * @param itemsPerPage The number of items to display per page.
+ * @param itemList The array of items to paginate.
+ * @returns An object containing the current page's item offset, end offset, current items, page count, and a function to handle page clicks.
+ */
 const usePaginate = (itemsPerPage: number, itemList: any[]) => {
 	const [itemOffset, setItemOffset] = useState(0);
 
@@ -7,7 +13,10 @@ const usePaginate = (itemsPerPage: number, itemList: any[]) => {
 	const currentItems = itemList.slice(itemOffset, endOffset);
 	const pageCount = Math.ceil(itemList.length / itemsPerPage);
 
-	// Invoke when user click to request another page.
+	/**
+	 * A function that handles page clicks and updates the item offset state.
+	 * @param event The click event object.
+	 */
 	const handlePageClick = (event: any) => {
 		const newOffset = (event.selected * itemsPerPage) % itemList.length;
 		console.log(

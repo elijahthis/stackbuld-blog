@@ -5,6 +5,10 @@ import { useContext } from "react";
 import { authContext } from "@/hooks/useAuth";
 import { toast } from "react-toastify";
 
+/**
+ * Header component that displays the navigation bar.
+ * @returns JSX.Element
+ */
 const Header = () => {
 	const { isLoggedIn, setIsLoggedIn, setUserObj } = useContext(authContext);
 
@@ -13,6 +17,9 @@ const Header = () => {
 			<Link href="/" className="font-bold text-base lg:text-2xl ">
 				StackBuld
 			</Link>
+			{/* 
+			if the user is logged in, display the logout button, else display the login button
+			*/}
 			{isLoggedIn ? (
 				<Button
 					onClick={() => {
