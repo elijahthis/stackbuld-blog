@@ -145,7 +145,7 @@ const CreateEdit = ({
 				</div>
 				<div className="flex flex-col items-stretch gap-2 mb-4 ">
 					<label htmlFor="content">Content:</label>
-					<ReactQuill value={content} onChange={handleContentChange} />
+					{/* <ReactQuill value={content} onChange={handleContentChange} /> */}
 				</div>
 				<div className="mb-4">
 					<UploadImage image={image} setImage={setImage} />
