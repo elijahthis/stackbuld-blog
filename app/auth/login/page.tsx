@@ -21,29 +21,27 @@ const Login = () => {
 	const { isLoggedIn, setIsLoggedIn, setUserObj } = useContext(authContext);
 
 	const loginFunc = (email: string, password: string) => {
-		if (window) {
-			setLoading(true);
-			signInWithEmailAndPassword(auth, email, password)
-				.then((userCredential) => {
-					// Signed in
-					const user = userCredential.user;
-					// ...
-					// console.log(user);
-					setUserObj(user);
-					setIsLoggedIn(true);
+		setLoading(true);
+		signInWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+				// Signed in
+				const user = userCredential.user;
+				// ...
+				// console.log(user);
+				setUserObj(user);
+				setIsLoggedIn(true);
 
-					toast.success("Login successful");
-					router.push("/");
-				})
-				.catch((error) => {
-					const errorCode = error.code;
-					const errorMessage = error.message;
-					toast.error("Invalid email or password");
-				})
-				.finally(() => {
-					setLoading(false);
-				});
-		}
+				toast.success("Login successful");
+				router.push("/");
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				toast.error("Invalid email or password");
+			})
+			.finally(() => {
+				setLoading(false);
+			});
 	};
 
 	return (

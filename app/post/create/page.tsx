@@ -1,3 +1,4 @@
+"use client";
 import CreateEdit from "@/components/CreateEdit";
 
 const CreatePostPage = () => {
