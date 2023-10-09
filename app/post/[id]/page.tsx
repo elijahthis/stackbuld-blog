@@ -73,7 +73,9 @@ function PostPage({ params }: { params: { id: string } }) {
 					{/* Edit and Delete operations can only be performed on your own posts */}
 					{isLoggedIn && post.authorName === userObj?.displayName ? (
 						<div className="flex flex-row items-center gap-4">
-							<Button>Edit Post</Button>
+							<Button onClick={() => router.push(`/post/edit/${post.id}`)}>
+								Edit Post
+							</Button>
 							<Button
 								style={{ backgroundColor: "#a10f18" }}
 								loading={deleteLoading}

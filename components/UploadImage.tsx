@@ -86,13 +86,19 @@ const UploadImage = ({ image, setImage }: UploadImageProps) => {
 			) : (
 				<>
 					{image ? (
-						<Image
-							src={image}
-							width={300}
-							height={300}
-							alt="banner"
-							className="w-full h-full object-cover"
-						/>
+						<div className="relative w-full h-full">
+							<Image
+								src={image}
+								width={300}
+								height={300}
+								alt="banner"
+								className="w-full h-full object-cover"
+							/>
+							<label
+								htmlFor="image-upload"
+								className="absolute top-0 left-0 w-full h-full cursor-pointer grid place-items-center"
+							></label>
+						</div>
 					) : (
 						<label
 							htmlFor="image-upload"

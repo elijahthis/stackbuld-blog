@@ -49,7 +49,7 @@ const PostPreview = ({ postData }: { postData: IPost }) => {
 					alt={postData.authorName + "avatar"}
 					width={20}
 					height={20}
-					className="rounded-full inline-block "
+					className="rounded-full inline-block overflow-hidden "
 				/>
 				<p className=" inline-block text-[#a4634d] ">{`${postData.authorName} ${
 					postData.authorName === userObj?.displayName ? "(YOU)" : ""
